@@ -1,0 +1,12 @@
+// Hello, TinyScript — the smallest useful program.
+// Shows variables, string concatenation and print().
+
+let name = "TinyScript";
+print("Hello, " + name + "!");
+
+let year = 2026;
+print("Compiling since " + year + ".");
+
+for (let i = 1; i <= 3; i = i + 1) {
+    print("Line " + i + " of 3.");
+}

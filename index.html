@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>TinyScript IDE</title>
+
+    <meta
+        name="description"
+        content="TinyScript - A tiny interpreted programming language built from scratch.">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="background"></div>
+
+    <div class="blob blob1"></div>
+
+    <div class="blob blob2"></div>
+
+    <div class="blob blob3"></div>
+
+    <!-- ===========================
+         NAVBAR
+    ============================ -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-code"></i>
+
+            </div>
+
+            <div>
+
+                <h1>TinyScript</h1>
+
+                <span>Programming Language IDE</span>
+
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+
+            <button class="nav-link active" id="editorBtn">
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+                Editor
+
+            </button>
+            <button class="nav-link" id="docsBtn">
+
+    <i class="fa-solid fa-book"></i>
+
+    Documentation
+
+</button>
+<button class="nav-link" id="examplesBtn">
+
+    <i class="fa-solid fa-flask"></i>
+
+    Examples
+
+</button>
+<button
+class="nav-link"
+id="aboutBtn">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    About
+
+</button>
+
+        </div>
+
+        <div class="nav-actions">
+            <button
+id="shortcutBtn"
+title="Keyboard Shortcuts">
+
+    <i class="fa-solid fa-keyboard"></i>
+
+</button>
+
+            <div class="runtime-status">
+
+                <span class="status-dot"></span>
+
+                Runtime Ready
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- ===========================
+         HERO
+    ============================ -->
+
+    <header class="hero">
+
+        <div class="hero-badge">
+
+            <i class="fa-solid fa-sparkles"></i>
+
+            Built for HackWeek 2026
+
+        </div>
+
+        <h2>
+
+            Design.
+
+            Interpret.
+
+            Execute.
+
+        </h2>
+
+        <p>
+
+            TinyScript is a lightweight interpreted programming language
+            created completely from scratch using JavaScript.
+            It includes a tokenizer, parser, runtime,
+            interpreter and a modern web IDE.
+
+        </p>
+
+        <div class="hero-buttons">
+            <button
+class="primary-btn"
+id="startCodingBtn">
+
+    <i class="fa-solid fa-play"></i>
+
+    Start Coding
+
+</button>
+
+            <button
+class="secondary-btn"
+id="languageGuideBtn">
+                <i class="fa-solid fa-book"></i>
+
+                Language Guide
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- ===========================
+         MAIN WORKSPACE
+    ============================ -->
+
+    <main class="workspace">
+
+        <!-- ===========================
+             SIDEBAR
+        ============================ -->
+
+        <aside class="sidebar" id="examplesSection">
+
+            <h2>
+
+                Examples
+
+            </h2>
+
+            <button
+                class="example-btn"
+                id="helloBtn">
+
+                <i class="fa-solid fa-hand"></i>
+
+                Hello World
+
+            </button>
+
+            <button
+                class="example-btn"
+                id="calcBtn">
+
+                <i class="fa-solid fa-calculator"></i>
+
+                Calculator
+
+            </button>
+
+            <button
+                class="example-btn"
+                id="factorialBtn">
+
+                <i class="fa-solid fa-square-root-variable"></i>
+
+                Factorial
+
+            </button>
+
+            <button
+                class="example-btn"
+                id="fizzBtn">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                FizzBuzz
+
+            </button>
+            <div
+class="sidebar-card"
+id="languageGuideSection">
+
+    <h3>
+
+        Language Commands
+
+    </h3>
+
+                <ul>
+
+                    <li>LET</li>
+
+                    <li>PRINT</li>
+
+                    <li>IF</li>
+
+                    <li>ELSE</li>
+
+                    <li>ENDIF</li>
+
+                    <li>LOOP</li>
+
+                    <li>ENDLOOP</li>
+
+                </ul>
+
+            </div>
+
+            <div class="sidebar-card">
+
+                <h3>
+
+                    Quick Tips
+
+                </h3>
+
+                <p>⌨ Ctrl + Enter → Run</p>
+
+                <p>📂 Upload .tiny files</p>
+
+                <p>💾 Auto Save Enabled</p>
+
+                <p>📥 Download Program</p>
+
+            </div>
+
+        </aside>
+
+        <!-- ===========================
+             EDITOR
+        ============================ -->
+
+        <section
+class="editor-section"
+id="editorSection">
+            <!-- ===========================
+     EDITOR TOOLBAR
+=========================== -->
+
+<div class="editor-toolbar">
+
+    <div class="editor-tabs">
+
+        <div class="editor-tab active">
+
+            <i class="fa-solid fa-file-code"></i>
+
+            program.tiny
+
+        </div>
+
+    </div>
+
+    <div class="editor-actions">
+
+        <input
+            type="file"
+            id="fileInput"
+            accept=".tiny"
+            hidden>
+
+        <button
+            id="uploadBtn"
+            title="Upload">
+
+            <i class="fa-solid fa-folder-open"></i>
+
+        </button>
+
+        <button
+            id="downloadBtn"
+            title="Download">
+
+            <i class="fa-solid fa-download"></i>
+
+        </button>
+
+        <button
+            id="copyBtn"
+            title="Copy">
+
+            <i class="fa-solid fa-copy"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+     IDE WINDOW
+=========================== -->
+
+<div class="editor-window">
+
+    <!-- macOS Header -->
+
+    <div class="window-header">
+
+        <div class="window-buttons">
+
+            <span class="red"></span>
+
+            <span class="yellow"></span>
+
+            <span class="green"></span>
+
+        </div>
+
+        <div class="window-title">
+
+            TinyScript Editor
+
+        </div>
+
+        <div class="window-runtime">
+
+            JavaScript Runtime
+
+        </div>
+
+    </div>
+
+    <!-- Editor Body -->
+
+    <div class="editor-body">
+
+        <div
+            class="line-numbers"
+            id="lineNumbers">
+
+1
+
+        </div>
+
+        <!-- Welcome Screen -->
+
+        <div id="welcomeScreen">
+
+            <i class="fa-solid fa-code"></i>
+
+            <h2>
+
+                Welcome to TinyScript
+
+            </h2>
+
+            <p>
+
+                Choose an example or start writing your own program.
+
+            </p>
+
+        </div>
+
+        <textarea
+
+            id="editor"
+
+            spellcheck="false"
+
+            autocomplete="off"
+
+            autocorrect="off"
+
+            autocapitalize="off"
+
+            placeholder="Write TinyScript code here..."></textarea>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+     BUTTON BAR
+=========================== -->
+
+<div class="button-row">
+
+    <button id="runBtn">
+
+        <i class="fa-solid fa-play"></i>
+
+        Run Program
+
+    </button>
+
+    <button id="clearBtn">
+
+        <i class="fa-solid fa-trash"></i>
+
+        Clear
+
+    </button>
+
+    <button id="formatBtn">
+
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        Format
+
+    </button>
+
+</div>
+
+<!-- ===========================
+     STATUS BAR
+=========================== -->
+
+<div class="status-bar">
+
+    <div>
+
+        <span id="lineStatus">
+
+            Ln 1
+
+        </span>
+
+    </div>
+
+    <div>
+
+        UTF-8
+
+    </div>
+
+    <div>
+
+        TinyScript v1.0
+
+    </div>
+
+    <div id="runtimeStatus">
+
+        Ready
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+     OUTPUT PANEL
+=========================== -->
+
+<section class="output-section">
+
+    <div class="dashboard">
+
+        <h2>
+
+            Runtime Dashboard
+
+        </h2>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <h3 id="lineCount">
+
+                    0
+
+                </h3>
+
+                <span>
+
+                    Lines
+
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-cube"></i>
+
+                <h3 id="variableCount">
+
+                    0
+
+                </h3>
+
+                <span>
+
+                    Variables
+
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-stopwatch"></i>
+
+                <h3 id="executionTime">
+
+                    0 ms
+
+                </h3>
+
+                <span>
+
+                    Runtime
+
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <i class="fa-solid fa-terminal"></i>
+
+                <h3 id="outputLines">
+
+                    0
+
+                </h3>
+
+                <span>
+
+                    Output
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Terminal -->
+
+    <div class="terminal">
+
+        <div class="terminal-header">
+
+            <div class="terminal-left">
+
+                <span class="red"></span>
+
+                <span class="yellow"></span>
+
+                <span class="green"></span>
+
+            </div>
+
+            <div>
+
+                TinyScript Runtime Console
+
+            </div>
+
+            <button
+                id="copyOutput">
+
+                <i class="fa-solid fa-copy"></i>
+
+            </button>
+
+        </div>
+
+        <pre id="output">
+
+TinyScript Runtime Ready...
+
+        </pre>
+
+    </div>
+
+</section>
+    </main>
+
+    <!-- ==========================================
+                    FOOTER
+    =========================================== -->
+
+    <footer class="footer" id="documentationSection">
+
+        <div class="footer-left">
+
+            <h3>
+
+                TinyScript IDE
+
+            </h3>
+
+            <p>
+
+                A tiny interpreted programming language built completely
+                from scratch using JavaScript.
+
+            </p>
+
+        </div>
+
+        <div class="footer-center">
+
+            <div class="footer-links">
+
+                <span>
+
+                    <i class="fa-solid fa-code"></i>
+
+                    Tokenizer
+
+                </span>
+
+                <span>
+
+                    <i class="fa-solid fa-diagram-project"></i>
+
+                    Parser
+
+                </span>
+
+                <span>
+
+                    <i class="fa-solid fa-microchip"></i>
+
+                    Interpreter
+
+                </span>
+
+                <span>
+
+                    <i class="fa-solid fa-gears"></i>
+
+                    Runtime
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <div class="hackweek-badge">
+
+                HackWeek 2026
+
+            </div>
+
+            <small>
+
+                Version 1.0
+
+            </small>
+
+        </div>
+
+    </footer>
+
+    <!-- ==========================================
+                    TOAST
+    =========================================== -->
+
+    <div id="toast">
+
+        Ready
+
+    </div>
+
+    <!-- ==========================================
+                LOADING OVERLAY
+    =========================================== -->
+
+    <div
+        id="loadingOverlay"
+        class="loading-overlay hidden">
+
+        <div class="loader">
+
+            <div class="loader-ring"></div>
+
+            <h2>
+
+                TinyScript
+
+            </h2>
+
+            <p>
+
+                Executing Program...
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                    SHORTCUTS
+    =========================================== -->
+
+    <div
+        id="shortcutModal"
+        class="shortcut-modal hidden">
+
+        <div class="shortcut-card">
+
+            <h2>
+
+                Keyboard Shortcuts
+
+            </h2>
+
+            <div class="shortcut-list">
+
+                <div>
+
+                    <kbd>Ctrl</kbd>
+
+                    +
+
+                    <kbd>Enter</kbd>
+
+                    <span>
+
+                        Run Program
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <kbd>Ctrl</kbd>
+
+                    +
+
+                    <kbd>S</kbd>
+
+                    <span>
+
+                        Download Program
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <kbd>Ctrl</kbd>
+
+                    +
+
+                    <kbd>D</kbd>
+
+                    <span>
+
+                        Duplicate Line
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <kbd>Ctrl</kbd>
+
+                    +
+
+                    <kbd>/</kbd>
+
+                    <span>
+
+                        Toggle Comment
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button
+                id="closeShortcutModal">
+
+                Close
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+                JAVASCRIPT FILES
+    =========================================== -->
+    <!-- About Modal -->
+
+<div id="aboutModal" class="shortcut-modal hidden">
+
+    <div class="shortcut-card">
+
+        <h2>
+
+            TinyScript IDE
+
+        </h2>
+
+        <p>
+
+            TinyScript is a lightweight interpreted
+            programming language built from scratch
+            for HackWeek 2026.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            Features
+
+        </p>
+
+        <ul>
+
+            <li>✔ Custom Interpreter</li>
+
+            <li>✔ Runtime</li>
+
+            <li>✔ Tokenizer</li>
+
+            <li>✔ Parser</li>
+
+            <li>✔ Modern IDE</li>
+
+        </ul>
+
+        <br>
+
+        <button id="closeAbout">
+
+            Close
+
+        </button>
+
+    </div>
+
+</div>
+
+    <script src="js/runtime.js"></script>
+
+    <script src="js/tokenizer.js"></script>
+
+    <script src="js/parser.js"></script>
+
+    <script src="js/interpreter.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

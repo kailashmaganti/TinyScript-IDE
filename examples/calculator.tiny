@@ -1,0 +1,41 @@
+// Calculator — one function per operation, dispatched with if/else.
+// Demonstrates functions, conditions, and division-by-zero handling.
+
+function add(a, b) { return a + b; }
+function subtract(a, b) { return a - b; }
+function multiply(a, b) { return a * b; }
+
+function divide(a, b) {
+    if (b == 0) {
+        print("Error: division by zero");
+        return 0;
+    }
+    return a / b;
+}
+
+function calculate(op, a, b) {
+    if (op == "add") {
+        return add(a, b);
+    } else {
+        if (op == "subtract") {
+            return subtract(a, b);
+        } else {
+            if (op == "multiply") {
+                return multiply(a, b);
+            } else {
+                if (op == "divide") {
+                    return divide(a, b);
+                } else {
+                    print("Unknown operation: " + op);
+                    return 0;
+                }
+            }
+        }
+    }
+}
+
+print("8 add 3 = " + calculate("add", 8, 3));
+print("8 subtract 3 = " + calculate("subtract", 8, 3));
+print("8 multiply 3 = " + calculate("multiply", 8, 3));
+print("8 divide 3 = " + calculate("divide", 8, 3));
+print("8 divide 0 = " + calculate("divide", 8, 0));
