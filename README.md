@@ -35,19 +35,25 @@ Developed as part of **HackWeek 2026**, this project demonstrates the complete i
 
 ---
 
-## Editor
+## Hello World Example
 
-![Editor](assets/editor.png)
-
----
-
-## Runtime
-
-![Runtime](assets/runtime.png)
+![Hello World](assets/hello.png)
 
 ---
 
-## Dashboard
+## Calculator Example
+
+![Calculator](assets/calculator.png)
+
+---
+
+## Factorial Example
+
+![Factorial](assets/factorial.png)
+
+---
+
+## Runtime Dashboard
 
 ![Dashboard](assets/dashboard.png)
 
@@ -55,9 +61,7 @@ Developed as part of **HackWeek 2026**, this project demonstrates the complete i
 
 ## Keyboard Shortcuts
 
-![Shortcuts](assets/shortcuts.png)
-
----
+![Keyboard Shortcuts](assets/shortcuts.png)
 
 # 🛠️ TinyScript Language
 
