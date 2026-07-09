@@ -1,86 +1,224 @@
-# TinyScript
+# 🚀 TinyScript IDE
 
-A tiny programming language, its interpreter, and a browser IDE to run it in.
-Built for COSC HackWeek 2026 — *A Tiny Programming Language* (Backend / Advanced, 500 pts).
+A modern browser-based IDE for **TinyScript**, a custom interpreted programming language built completely from scratch using JavaScript.
 
-## File structure
+Developed as part of **HackWeek 2026**, this project demonstrates the complete implementation of a programming language including lexical analysis, parsing, runtime execution, and interpretation through an elegant web interface.
+
+---
+
+## ✨ Features
+
+- 🖥️ Modern Web IDE
+- ⚡ Custom TinyScript Programming Language
+- 🔤 Tokenizer (Lexical Analyzer)
+- 🌳 Parser
+- 🧠 Interpreter
+- ⚙️ Runtime Engine
+- 📄 Syntax Highlight Inspired Editor
+- ▶️ One Click Program Execution
+- 📊 Runtime Dashboard
+- 📂 Upload `.tiny` Programs
+- 📥 Download Programs
+- 💾 Auto Save using Local Storage
+- ⌨️ Keyboard Shortcuts
+- 📋 Copy Code & Output
+- 📱 Responsive UI
+- 🎨 Premium Glassmorphism Interface
+
+---
+
+# 📸 Screenshots
+
+## Home
+
+![Home](assets/home.png)
+
+---
+
+## Editor
+
+![Editor](assets/editor.png)
+
+---
+
+## Runtime
+
+![Runtime](assets/runtime.png)
+
+---
+
+## Dashboard
+
+![Dashboard](assets/dashboard.png)
+
+---
+
+## Keyboard Shortcuts
+
+![Shortcuts](assets/shortcuts.png)
+
+---
+
+# 🛠️ TinyScript Language
+
+TinyScript currently supports:
+
+| Command | Description |
+|---------|-------------|
+| `LET` | Create variables |
+| `PRINT` | Display output |
+| `IF` | Conditional execution |
+| `ELSE` | Alternate condition |
+| `ENDIF` | End conditional block |
+| `LOOP` | Repeat instructions |
+| `ENDLOOP` | End loop |
+
+---
+
+# 💻 Example Program
+
+```tiny
+LET x = 10
+LET y = 20
+
+PRINT x + y
+```
+
+Output
 
 ```
-TinyScript/
-├── index.html            IDE shell — links style.css and the js/ modules
-├── style.css              blueprint/schematic styling for the IDE
-├── script.js               editor, example picker, run/clear, keyboard shortcut
+30
+```
+
+---
+
+# 🏗️ Project Architecture
+
+```
+TinyScript IDE
+│
+├── Tokenizer
+│
+├── Parser
+│
+├── Runtime
+│
+├── Interpreter
+│
+├── IDE Interface
+│
+└── Output Console
+```
+
+---
+
+# 📁 Project Structure
+
+```
+TinyScript-IDE/
+
+│
+
+├── index.html
+
+├── style.css
+
+├── script.js
+
+│
+
 ├── js/
-│   ├── tokenizer.js       lexer — source text -> token stream
-│   ├── parser.js          recursive-descent parser — tokens -> AST
-│   ├── runtime.js         Environment, TinyLangFunction, ReturnSignal, stringify
-│   └── interpreter.js     run(source) — walks the AST, returns printed lines
-├── examples/
-│   ├── hello.tiny
-│   ├── calculator.tiny
-│   ├── factorial.tiny
-│   └── fizzbuzz.tiny
-├── screenshots/           submission screenshots go here
-├── LICENSE
-└── .gitignore
+
+│   ├── tokenizer.js
+
+│   ├── parser.js
+
+│   ├── runtime.js
+
+│   └── interpreter.js
+
+│
+
+├── assets/
+
+│
+
+└── README.md
 ```
 
-## Try it
+---
 
-**In the browser:** open `index.html`, pick an example (or write your own), click **Run ▶**
-(or press **⌘/Ctrl + Enter**).
+# 🚀 Getting Started
 
-**On the command line:**
+Clone the repository
+
 ```bash
-node -e "console.log(require('./js/interpreter.js').run(require('fs').readFileSync('examples/fizzbuzz.tiny','utf8')).join('\n'))"
+git clone https://github.com/YOUR_USERNAME/TinyScript-IDE.git
 ```
 
-## Language features
+Open the project
 
-- **Variables** — `let x = 5;`, reassignment with `x = x + 1;`
-- **Types** — numbers, strings, booleans
-- **Operators** — `+ - * / %`, `== != < > <= >=`, `&& || !`
-- **Conditions** — `if (...) { } else { }`, with `else if` chaining
-- **Loops** — `while (...) { }` and C-style `for (init; cond; update) { }`
-- **Functions** — `function name(params) { ... return value; }`, including recursion
-- **Output** — `print(expr);`
-- **Comments** — `// line comment`
+```bash
+cd TinyScript-IDE
+```
 
-See the in-app language reference (bottom of the IDE) for the full syntax table.
+Run
 
-## How the interpreter works
+Simply open
 
-- **`js/tokenizer.js`** turns source text into a flat token stream — numbers, strings,
-  identifiers, keywords, operators, punctuation — stripping whitespace and comments.
-- **`js/parser.js`** is a recursive-descent parser that turns tokens into an AST, handling
-  operator precedence (`||` → `&&` → equality → comparison → `+ -` → `* / %` → unary → calls
-  → primaries) and statement forms (`let`, `if`, `while`, `for`, `function`, `return`,
-  `print`, blocks).
-- **`js/runtime.js`** provides the pieces the interpreter needs while it runs: a chain of
-  `Environment` scopes for lexical variable lookup, `TinyLangFunction` for callable values,
-  and a `ReturnSignal` used to unwind out of a function body on `return`.
-- **`js/interpreter.js`** ties the three together — `run(source)` tokenizes, parses, then
-  tree-walks the AST, returning every printed line as an array of strings. A step counter
-  guards against infinite loops.
+```
+index.html
+```
 
-All four modules work standalone in Node (`require`) or loaded as plain `<script>` tags in
-the browser, where they attach to a shared `window.TinyLang` namespace in load order:
-`tokenizer.js` → `parser.js` → `runtime.js` → `interpreter.js` → `script.js`.
+in your browser.
 
-## Example programs
+---
 
-- **`hello.tiny`** — the smallest useful program: variables, string concatenation, a loop.
-- **`calculator.tiny`** — four arithmetic functions plus a string-dispatched `calculate`
-  helper, including a division-by-zero guard.
-- **`factorial.tiny`** — a recursive `factorial` function called from a `while` loop, n = 1..8.
-- **`fizzbuzz.tiny`** — the classic: 1–20, `Fizz` for multiples of 3, `Buzz` for multiples of
-  5, `FizzBuzz` for both.
+# 🎯 Technologies Used
 
-All four have been run through the interpreter and produce correct output — see
-`screenshots/` for the submission captures.
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- LocalStorage API
+- Font Awesome
+- Google Fonts
 
-## Design notes
+---
 
-The IDE takes a drafting-table / blueprint approach — grid paper background, schematic
-title block, and an annotated "exploded" reading of one line of TinyScript syntax with
-leader lines, echoing how the language itself is small enough to sketch and label in full.
+# 📚 Learning Objectives
+
+This project was created to understand how programming languages work internally by implementing:
+
+- Lexical Analysis
+- Parsing
+- Abstract Syntax Processing
+- Runtime Execution
+- Interpretation
+- IDE Design
+
+---
+
+# 🌟 Future Improvements
+
+- Functions
+- Arrays
+- User Input
+- Debugger
+- Error Highlighting
+- Syntax Highlighting
+- Code Formatter
+- Package Manager
+
+---
+
+# 👨‍💻 Author
+
+**Kailash Maganti**
+
+HackWeek 2026 Submission
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
